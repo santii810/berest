@@ -24,7 +24,7 @@ public class UserEntity implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "users"})
-    private RolEntity rol;
+    private GroupEntity group;
     @Column(name = "name", nullable = false, length = 500)
     private String name;
     @Column(name = "organization", nullable = false, length = 2000)

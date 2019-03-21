@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @Log4j2
-@RequestMapping("server")
+@RequestMapping("servers")
 @RestController
 public class ServerController {
 
@@ -26,4 +26,14 @@ public class ServerController {
     public Iterable<ServerEntity> findAll() {
         return serverService.findAll();
     }
+
+    @RequestMapping(
+            value = "/view/online",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Iterable<ServerEntity> findOnlineServers() {
+        return serverService.findOnlineServers();
+    }
+
 }

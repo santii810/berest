@@ -135,13 +135,17 @@ public class ServerEntity implements java.io.Serializable {
     @Column(name = "not_operational_count")
     private Integer notOperationalCount;
 
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "server_type", catalog = "metaserver2", joinColumns = {
             @JoinColumn(name = "server_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
     private Set<TypeEntity> types = new HashSet<TypeEntity>(0);
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
+    private Set<ServerStateEntity> serverStates = new HashSet<ServerStateEntity>(0);
 
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
@@ -151,7 +155,6 @@ public class ServerEntity implements java.io.Serializable {
 //    private Set<ServerNormalization> serverNormalizations = new HashSet<ServerNormalization>(0);
 //    private Set<RequestEvaluation> requestEvaluations = new HashSet<RequestEvaluation>(0);
 //    private Set<ServerVersion> serverVersions = new HashSet<ServerVersion>(0);
-//    private Set<ServerState> serverStates = new HashSet<ServerState>(0);
 //    private Set<PrivatePredictionEvaluation> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluation>(0);
 //    private Set<Prediction> predictions = new HashSet<Prediction>(0);
 //    private Set<PredictionRequest> predictionRequests = new HashSet<PredictionRequest>(0);
@@ -238,12 +241,11 @@ public class ServerEntity implements java.io.Serializable {
 //        this.serverVersions = serverVersions;
 //    }
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
-//    public Set<ServerState> getServerStates() {
+//    public Set<ServerStateEntity> getServerStates() {
 //        return this.serverStates;
 //    }
 //
-//    public void setServerStates(Set<ServerState> serverStates) {
+//    public void setServerStates(Set<ServerStateEntity> serverStates) {
 //        this.serverStates = serverStates;
 //    }
 //
