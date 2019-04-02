@@ -3,6 +3,7 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -136,7 +137,7 @@ public class ServerEntity implements java.io.Serializable {
     private Integer notOperationalCount;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "server_type", catalog = "metaserver2", joinColumns = {
+    @JoinTable(name = "server_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
             @JoinColumn(name = "server_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
