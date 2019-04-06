@@ -1,5 +1,6 @@
 package es.uvigo.esei.sgvilar.berest.controllers;
 
+import es.uvigo.esei.sgvilar.berest.controllers.parsers.ServerParser;
 import es.uvigo.esei.sgvilar.berest.entities.ServerEntity;
 import es.uvigo.esei.sgvilar.berest.services.ServerService;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +18,7 @@ public class ServerController {
 
     @Autowired
     private ServerService serverService;
+    private ServerParser serverParser = new ServerParser();
 
     @RequestMapping(
             value = "/view/all",
@@ -24,7 +26,7 @@ public class ServerController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Iterable<ServerEntity> findAll() {
-        return serverService.findAll();
+        return serverParser.parse(serverService.findAll());
     }
 
     @RequestMapping(
