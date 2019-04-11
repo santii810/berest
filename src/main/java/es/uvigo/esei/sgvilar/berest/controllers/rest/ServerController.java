@@ -1,7 +1,7 @@
-package es.uvigo.esei.sgvilar.berest.controllers;
+package es.uvigo.esei.sgvilar.berest.controllers.rest;
 
+import es.uvigo.esei.sgvilar.berest.controllers.entities.Server;
 import es.uvigo.esei.sgvilar.berest.controllers.parsers.ServerParser;
-import es.uvigo.esei.sgvilar.berest.entities.ServerEntity;
 import es.uvigo.esei.sgvilar.berest.services.ServerService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Set;
 
 @Log4j2
 @RequestMapping("servers")
@@ -25,7 +27,7 @@ public class ServerController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Iterable<ServerEntity> findAll() {
+    public Set<Server> findAll() {
         return serverParser.parse(serverService.findAll());
     }
 
@@ -34,8 +36,8 @@ public class ServerController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Iterable<ServerEntity> findOnlineServers() {
-        return serverService.findOnlineServers();
+    public Set<Server> findOnlineServers() {
+        return serverParser.parse(serverService.findOnlineServers());
     }
 
 }

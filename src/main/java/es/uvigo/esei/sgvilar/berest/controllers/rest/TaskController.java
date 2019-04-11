@@ -1,4 +1,4 @@
-package es.uvigo.esei.sgvilar.berest.controllers;
+package es.uvigo.esei.sgvilar.berest.controllers.rest;
 
 import es.uvigo.esei.sgvilar.berest.entities.TaskEntity;
 import es.uvigo.esei.sgvilar.berest.services.TaskService;

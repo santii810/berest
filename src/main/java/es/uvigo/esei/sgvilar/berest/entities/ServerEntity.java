@@ -20,13 +20,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
-@Table(name = "server", catalog = "metaserver2", uniqueConstraints = {@UniqueConstraint(columnNames = "key"), @UniqueConstraint(columnNames = "becalm_key")})
+@Table(name = "server", catalog = BerestStrings.CATALOG_NAME, uniqueConstraints = {@UniqueConstraint(columnNames = "key"), @UniqueConstraint(columnNames = "becalm_key")})
 public class ServerEntity implements java.io.Serializable {
 
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -36,9 +37,9 @@ public class ServerEntity implements java.io.Serializable {
     private String name;
     @Column(name = "description", nullable = false, length = 65535)
     private String description;
+
     @Column(name = "person_of_contact", length = 500)
     private String personOfContact;
-
     @Column(name = "institution", length = 500)
     private String institution;
     @Column(name = "email", nullable = false, length = 500)
@@ -148,6 +149,24 @@ public class ServerEntity implements java.io.Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
     private Set<ServerStateEntity> serverStates = new HashSet<ServerStateEntity>(0);
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Set<TypeEntity> getTypeEntities() {
+        //TODO fix here
+        return new HashSet<>();
+//        return this.types;
+    }
+
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
 //    private Set<DocumentPredictionEvaluation> documentPredictionEvaluations = new HashSet<DocumentPredictionEvaluation>(0);
@@ -222,7 +241,7 @@ public class ServerEntity implements java.io.Serializable {
 //    }
 //
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "request_evaluation_server", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "request_evaluation_server", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
 //            @JoinColumn(name = "server_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "request_evaluation_id", nullable = false, updatable = false)})
 //    public Set<RequestEvaluation> getRequestEvaluations() {

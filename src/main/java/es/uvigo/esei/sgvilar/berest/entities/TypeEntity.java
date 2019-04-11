@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
-@Table(name = "type", catalog = BerestStrings.CATALOG_NAME, uniqueConstraints = {@UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "color")})
+@Table(name = "type", catalog = BerestStrings.CATALOG_NAME)
 public class TypeEntity implements java.io.Serializable {
 
 
@@ -44,11 +44,23 @@ public class TypeEntity implements java.io.Serializable {
     private Boolean isServerAnnotable;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "server_type", catalog = "metaserver2", joinColumns = {
+    @JoinTable(name = "server_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "server_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "types"})
     private Set<ServerEntity> servers = new HashSet<>(0);
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
 
 //    private Set<PrivateTypePredictionEvaluation> privateTypePredictionEvaluations = new HashSet<PrivateTypePredictionEvaluation>(0);
 //    private Set<GoldAnnotation> goldAnnotations = new HashSet<GoldAnnotation>(0);
@@ -152,7 +164,7 @@ public class TypeEntity implements java.io.Serializable {
 //    }
 //
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "competition_type", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "competition_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
 //            @JoinColumn(name = "type_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "competition_id", nullable = false, updatable = false)})
 //    public Set<Competition> getCompetitions() {
@@ -209,7 +221,7 @@ public class TypeEntity implements java.io.Serializable {
 //    }
 //
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "schedule_request_type", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "schedule_request_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
 //            @JoinColumn(name = "type_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
 //    public Set<ScheduleRequest> getScheduleRequests() {

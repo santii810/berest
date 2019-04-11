@@ -116,7 +116,7 @@ public class UserEntity implements java.io.Serializable {
 //    }
 //
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "user_project", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "user_project", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
 //            @JoinColumn(name = "user_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "project_id", nullable = false, updatable = false)})
 //    public Set<Project> getProjects() {
