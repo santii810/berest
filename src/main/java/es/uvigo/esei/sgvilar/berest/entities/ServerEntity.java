@@ -3,7 +3,9 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,17 +29,18 @@ public class ServerEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-
+    @JsonView(JSONViews.ServerAndServices.class)
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
     private UserEntity user;
     @Column(name = "name", nullable = false, length = 2000)
+    @JsonView(JSONViews.ServerAndServices.class)
     private String name;
     @Column(name = "description", nullable = false, length = 65535)
+    @JsonView(JSONViews.ServerAndServices.class)
     private String description;
-
     @Column(name = "person_of_contact", length = 500)
     private String personOfContact;
     @Column(name = "institution", length = 500)
@@ -142,6 +145,7 @@ public class ServerEntity implements java.io.Serializable {
             @JoinColumn(name = "server_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
+    @JsonView(JSONViews.ServerAndServices.class)
     private Set<TypeEntity> types = new HashSet<TypeEntity>(0);
 
 
@@ -149,23 +153,23 @@ public class ServerEntity implements java.io.Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
     private Set<ServerStateEntity> serverStates = new HashSet<ServerStateEntity>(0);
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public Set<TypeEntity> getTypeEntities() {
-        //TODO fix here
-        return new HashSet<>();
+//    public Integer getId() {
+//        return this.id;
+//    }
+//
+//    public String getName() {
+//        return this.name;
+//    }
+//
+//    public String getDescription() {
+//        return this.description;
+//    }
+//
+//    public Set<TypeEntity> getTypeEntities() {
+//        //TODO fix here
+////        return new HashSet<>();
 //        return this.types;
-    }
+//    }
 
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
