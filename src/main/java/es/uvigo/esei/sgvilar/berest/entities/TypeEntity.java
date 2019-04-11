@@ -3,7 +3,9 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,14 +28,17 @@ public class TypeEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+    @JsonView(JSONViews.ServerAndServices.class)
     private Integer id;
 
 
     @Column(name = "name", unique = true, nullable = false)
+    @JsonView(JSONViews.ServerAndServices.class)
     private String name;
 
 
     @Column(name = "description", length = 65535)
+    @JsonView(JSONViews.ServerAndServices.class)
     private String description;
     @Column(name = "color", unique = true, length = 15)
     private String color;
