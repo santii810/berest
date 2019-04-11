@@ -3,6 +3,7 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
-@Table(name = "task_name", catalog = "metaserver2")
+@Table(name = "task_name", catalog = BerestStrings.CATALOG_NAME)
 public class TaskNameEntity implements java.io.Serializable {
 
     @Id

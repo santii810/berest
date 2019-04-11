@@ -3,6 +3,7 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
-@Table(name = "server_state_name", catalog = "metaserver2", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "server_state_name", catalog = BerestStrings.CATALOG_NAME, uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class ServerStateNameEntity implements java.io.Serializable {
 
     @Id

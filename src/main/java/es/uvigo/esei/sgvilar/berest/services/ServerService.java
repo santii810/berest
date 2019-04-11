@@ -12,7 +12,7 @@ public class ServerService {
     @Autowired
     private ServerRepository serverRepository;
 
-    public Iterable<ServerEntity> findAll() {
+    public Set<ServerEntity> findAll() {
         return serverRepository.findAll();
     }
 

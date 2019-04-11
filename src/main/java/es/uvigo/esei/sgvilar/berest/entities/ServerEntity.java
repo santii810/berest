@@ -3,6 +3,9 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,25 +22,27 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
-@Table(name = "server", catalog = "metaserver2", uniqueConstraints = {@UniqueConstraint(columnNames = "key"), @UniqueConstraint(columnNames = "becalm_key")})
+@Table(name = "server", catalog = BerestStrings.CATALOG_NAME, uniqueConstraints = {@UniqueConstraint(columnNames = "key"), @UniqueConstraint(columnNames = "becalm_key")})
 public class ServerEntity implements java.io.Serializable {
 
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+    @JsonView(JSONViews.ServerAndServices.class)
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
     private UserEntity user;
     @Column(name = "name", nullable = false, length = 2000)
+    @JsonView(JSONViews.ServerAndServices.class)
     private String name;
     @Column(name = "description", nullable = false, length = 65535)
+    @JsonView(JSONViews.ServerAndServices.class)
     private String description;
     @Column(name = "person_of_contact", length = 500)
     private String personOfContact;
-
     @Column(name = "institution", length = 500)
     private String institution;
     @Column(name = "email", nullable = false, length = 500)
@@ -136,16 +141,18 @@ public class ServerEntity implements java.io.Serializable {
     private Integer notOperationalCount;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "server_type", catalog = "metaserver2", joinColumns = {
+    @JoinTable(name = "server_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
             @JoinColumn(name = "server_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
+    @JsonView(JSONViews.ServerAndServices.class)
     private Set<TypeEntity> types = new HashSet<TypeEntity>(0);
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
     private Set<ServerStateEntity> serverStates = new HashSet<ServerStateEntity>(0);
+
 
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
@@ -221,7 +228,7 @@ public class ServerEntity implements java.io.Serializable {
 //    }
 //
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "request_evaluation_server", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "request_evaluation_server", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
 //            @JoinColumn(name = "server_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "request_evaluation_id", nullable = false, updatable = false)})
 //    public Set<RequestEvaluation> getRequestEvaluations() {

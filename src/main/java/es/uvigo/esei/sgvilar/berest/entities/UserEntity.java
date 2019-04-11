@@ -3,6 +3,7 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
-@Table(name = "user", catalog = "metaserver2")
+@Table(name = "user", catalog = BerestStrings.CATALOG_NAME)
 public class UserEntity implements java.io.Serializable {
 
     @Id
@@ -115,7 +116,7 @@ public class UserEntity implements java.io.Serializable {
 //    }
 //
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "user_project", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "user_project", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
 //            @JoinColumn(name = "user_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "project_id", nullable = false, updatable = false)})
 //    public Set<Project> getProjects() {
