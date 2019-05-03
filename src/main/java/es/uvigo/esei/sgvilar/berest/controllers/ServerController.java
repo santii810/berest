@@ -37,6 +37,7 @@ public class ServerController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+    @JsonView(JSONViews.ServerAndServices.class)
     public Set<ServerEntity> findOnlineServers() {
         return serverService.findOnlineServers();
     }
