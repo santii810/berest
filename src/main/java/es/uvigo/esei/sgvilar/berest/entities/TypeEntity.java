@@ -55,17 +55,16 @@ public class TypeEntity implements java.io.Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "types"})
     private Set<ServerEntity> servers = new HashSet<>(0);
 
-    public Integer getId() {
-        return this.id;
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "type"})
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
 
-    public String getName() {
-        return this.name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedule_request_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
+            @JoinColumn(name = "type_id", nullable = false, updatable = false)}, inverseJoinColumns = {
+            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "types"})
+    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<ScheduleRequestEntity>(0);
 
 //    private Set<PrivateTypePredictionEvaluation> privateTypePredictionEvaluations = new HashSet<PrivateTypePredictionEvaluation>(0);
 //    private Set<GoldAnnotation> goldAnnotations = new HashSet<GoldAnnotation>(0);
@@ -73,15 +72,14 @@ public class TypeEntity implements java.io.Serializable {
 //    private Set<TypePredictionEvaluation> typePredictionEvaluations = new HashSet<TypePredictionEvaluation>(0);
 //    private Set<PrivateDocumentTypeFalsePositive> privateDocumentTypeFalsePositives = new HashSet<PrivateDocumentTypeFalsePositive>(0);
 //    private Set<DocumentTypeFalseNegative> documentTypeFalseNegatives = new HashSet<DocumentTypeFalseNegative>(0);
-//    private Set<PrivatePrediction> privatePredictions = new HashSet<PrivatePrediction>(0);
+
 //    private Set<DocumentTypeTruePositive> documentTypeTruePositivesForPredictionTypeId = new HashSet<DocumentTypeTruePositive>(0);
 //    private Set<Competition> competitions = new HashSet<Competition>(0);
 //    private Set<ProjectConsensus> projectConsensuses = new HashSet<ProjectConsensus>(0);
-//    private Set<Prediction> predictions = new HashSet<Prediction>(0);
+//    private Set<PredictionEntity> predictions = new HashSet<PredictionEntity>(0);
 //    private Set<PrivateDocumentTypeFalseNegative> privateDocumentTypeFalseNegatives = new HashSet<PrivateDocumentTypeFalseNegative>(0);
 //    private Set<PrivateDocumentTypeTruePositive> privateDocumentTypeTruePositivesForGoldTypeId = new HashSet<PrivateDocumentTypeTruePositive>(0);
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
-//    private Set<ScheduleRequest> scheduleRequests = new HashSet<ScheduleRequest>(0);
 //    private Set<DocumentTypeTruePositive> documentTypeTruePositivesForGoldTypeId = new HashSet<DocumentTypeTruePositive>(0);
 //    private Set<ServerNormalization> serverNormalizations = new HashSet<ServerNormalization>(0);
 //    private Set<PrivateDocumentTypeTruePositive> privateDocumentTypeTruePositivesForPredictionTypeId = new HashSet<PrivateDocumentTypeTruePositive>(0);
@@ -150,14 +148,7 @@ public class TypeEntity implements java.io.Serializable {
 //        this.documentTypeFalseNegatives = documentTypeFalseNegatives;
 //    }
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-//    public Set<PrivatePrediction> getPrivatePredictions() {
-//        return this.privatePredictions;
-//    }
-//
-//    public void setPrivatePredictions(Set<PrivatePrediction> privatePredictions) {
-//        this.privatePredictions = privatePredictions;
-//    }
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeByPredictionTypeId")
 //    public Set<DocumentTypeTruePositive> getDocumentTypeTruePositivesForPredictionTypeId() {
@@ -190,11 +181,11 @@ public class TypeEntity implements java.io.Serializable {
 //    }
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-//    public Set<Prediction> getPredictions() {
+//    public Set<PredictionEntity> getPredictionEntities() {
 //        return this.predictions;
 //    }
 //
-//    public void setPredictions(Set<Prediction> predictions) {
+//    public void setPredictionEntities(Set<PredictionEntity> predictions) {
 //        this.predictions = predictions;
 //    }
 //
@@ -225,17 +216,7 @@ public class TypeEntity implements java.io.Serializable {
 //        this.projectsServersTypesDocumentses = projectsServersTypesDocumentses;
 //    }
 //
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "schedule_request_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
-//            @JoinColumn(name = "type_id", nullable = false, updatable = false)}, inverseJoinColumns = {
-//            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
-//    public Set<ScheduleRequest> getScheduleRequests() {
-//        return this.scheduleRequests;
-//    }
-//
-//    public void setScheduleRequests(Set<ScheduleRequest> scheduleRequests) {
-//        this.scheduleRequests = scheduleRequests;
-//    }
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeByGoldTypeId")
 //    public Set<DocumentTypeTruePositive> getDocumentTypeTruePositivesForGoldTypeId() {

@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -35,6 +37,11 @@ public class TaskEntity implements java.io.Serializable {
     @JoinColumn(name = "task_state_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "tasks"})
     private TaskStateEntity taskState;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "task"})
+    private Set<PredictionRequestEntity> predictionRequests = new HashSet<>(0);
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", length = 19)
     private Date created;
@@ -60,9 +67,7 @@ public class TaskEntity implements java.io.Serializable {
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
 //    private Set<JobQueue> jobQueues = new HashSet<JobQueue>(0);
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
-//    private Set<PredictionRequest> predictionRequests = new HashSet<PredictionRequest>(0);
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
-//    private Set<PrivatePredictionEvaluation> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluation>(0);
+//    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluationEntity>(0);
 
 
 }

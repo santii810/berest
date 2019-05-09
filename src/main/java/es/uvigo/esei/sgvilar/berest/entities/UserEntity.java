@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -22,11 +24,17 @@ public class UserEntity implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "users"})
     private GroupEntity group;
+
     @Column(name = "name", nullable = false, length = 500)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "user"})
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
+
     private String name;
     @Column(name = "organization", nullable = false, length = 2000)
     private String organization;
@@ -59,10 +67,10 @@ public class UserEntity implements java.io.Serializable {
     @Column(name = "subscribed_to_emails")
     private Boolean subscribedToEmails;
 
-//    private Set<PredictionUpload> predictionUploads = new HashSet<PredictionUpload>(0);
-//    private Set<PrivatePredictionEvaluation> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluation>(0);
+//    private Set<PredictionUploadEntity> predictionUploads = new HashSet<PredictionUploadEntity>(0);
+//    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluationEntity>(0);
 //    private Set<ServerEntity> servers = new HashSet<ServerEntity>(0);
-//    private Set<Prediction> predictions = new HashSet<Prediction>(0);
+//    private Set<PredictionEntity> predictions = new HashSet<PredictionEntity>(0);
 //    private Set<Project> projects = new HashSet<Project>(0);
 //    private Set<Notification> notifications = new HashSet<Notification>(0);
 //    private Set<DocumentTypeFalsePositive> documentTypeFalsePositives = new HashSet<DocumentTypeFalsePositive>(0);
@@ -70,7 +78,6 @@ public class UserEntity implements java.io.Serializable {
 //    private Set<TypePredictionEvaluation> typePredictionEvaluations = new HashSet<TypePredictionEvaluation>(0);
 //    private Set<DocumentPredictionEvaluation> documentPredictionEvaluations = new HashSet<DocumentPredictionEvaluation>(0);
 //    private Set<DocumentTypeFalseNegative> documentTypeFalseNegatives = new HashSet<DocumentTypeFalseNegative>(0);
-//    private Set<PrivatePrediction> privatePredictions = new HashSet<PrivatePrediction>(0);
 //    private Set<DocumentTypeTruePositive> documentTypeTruePositives = new HashSet<DocumentTypeTruePositive>(0);
 //    private Set<UserConnection> userConnections = new HashSet<UserConnection>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
@@ -80,22 +87,15 @@ public class UserEntity implements java.io.Serializable {
 
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    public Set<PredictionUpload> getPredictionUploads() {
+//    public Set<PredictionUploadEntity> getPredictionUploads() {
 //        return this.predictionUploads;
 //    }
 //
-//    public void setPredictionUploads(Set<PredictionUpload> predictionUploads) {
+//    public void setPredictionUploads(Set<PredictionUploadEntity> predictionUploads) {
 //        this.predictionUploads = predictionUploads;
 //    }
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    public Set<PrivatePredictionEvaluation> getPrivatePredictionEvaluations() {
-//        return this.privatePredictionEvaluations;
-//    }
-//
-//    public void setPrivatePredictionEvaluations(Set<PrivatePredictionEvaluation> privatePredictionEvaluations) {
-//        this.privatePredictionEvaluations = privatePredictionEvaluations;
-//    }
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 //    public Set<ServerEntity> getServers() {
@@ -107,11 +107,11 @@ public class UserEntity implements java.io.Serializable {
 //    }
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    public Set<Prediction> getPredictions() {
+//    public Set<PredictionEntity> getPredictionEntities() {
 //        return this.predictions;
 //    }
 //
-//    public void setPredictions(Set<Prediction> predictions) {
+//    public void setPredictionEntities(Set<PredictionEntity> predictions) {
 //        this.predictions = predictions;
 //    }
 //
@@ -182,12 +182,12 @@ public class UserEntity implements java.io.Serializable {
 //    }
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    public Set<PrivatePrediction> getPrivatePredictions() {
-//        return this.privatePredictions;
+//    public Set<PrivatePredictionEntity> getPrivatePredictionEntities() {
+//        return this.privatePredictionEntities;
 //    }
 //
-//    public void setPrivatePredictions(Set<PrivatePrediction> privatePredictions) {
-//        this.privatePredictions = privatePredictions;
+//    public void setPrivatePredictionEntities(Set<PrivatePredictionEntity> privatePredictionEntities) {
+//        this.privatePredictionEntities = privatePredictionEntities;
 //    }
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

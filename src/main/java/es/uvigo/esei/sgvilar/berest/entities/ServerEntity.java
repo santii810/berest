@@ -154,6 +154,22 @@ public class ServerEntity implements java.io.Serializable {
     private Set<ServerStateEntity> serverStates = new HashSet<ServerStateEntity>(0);
 
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
+    private Set<PredictionRequestEntity> predictionRequests = new HashSet<>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
+    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluationEntities = new HashSet<PrivatePredictionEvaluationEntity>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
+    private Set<ServerVersionEntity> serverVersions = new HashSet<ServerVersionEntity>(0);
+
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
 //    private Set<DocumentPredictionEvaluation> documentPredictionEvaluations = new HashSet<DocumentPredictionEvaluation>(0);
@@ -161,14 +177,10 @@ public class ServerEntity implements java.io.Serializable {
 //    private Set<PredictionEvaluation> predictionEvaluations = new HashSet<PredictionEvaluation>(0);
 //    private Set<ServerNormalization> serverNormalizations = new HashSet<ServerNormalization>(0);
 //    private Set<RequestEvaluation> requestEvaluations = new HashSet<RequestEvaluation>(0);
-//    private Set<ServerVersion> serverVersions = new HashSet<ServerVersion>(0);
-//    private Set<PrivatePredictionEvaluation> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluation>(0);
-//    private Set<Prediction> predictions = new HashSet<Prediction>(0);
-//    private Set<PredictionRequest> predictionRequests = new HashSet<PredictionRequest>(0);
+//    private Set<PredictionEntity> predictions = new HashSet<PredictionEntity>(0);
 //    private Set<ServerConnectionLog> serverConnectionLogs = new HashSet<ServerConnectionLog>(0);
 //    private Set<DocumentTypeFalsePositive> documentTypeFalsePositives = new HashSet<DocumentTypeFalsePositive>(0);
 //    private Set<TypePredictionEvaluation> typePredictionEvaluations = new HashSet<TypePredictionEvaluation>(0);
-//    private Set<PrivatePrediction> privatePredictions = new HashSet<PrivatePrediction>(0);
 //    private Set<DocumentTypeTruePositive> documentTypeTruePositives = new HashSet<DocumentTypeTruePositive>(0);
 
 
@@ -239,38 +251,15 @@ public class ServerEntity implements java.io.Serializable {
 //        this.requestEvaluations = requestEvaluations;
 //    }
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
-//    public Set<ServerVersion> getServerVersions() {
-//        return this.serverVersions;
-//    }
-//
-//    public void setServerVersions(Set<ServerVersion> serverVersions) {
-//        this.serverVersions = serverVersions;
-//    }
-//
-//    public Set<ServerStateEntity> getServerStates() {
-//        return this.serverStates;
-//    }
-//
-//    public void setServerStates(Set<ServerStateEntity> serverStates) {
-//        this.serverStates = serverStates;
-//    }
+
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
-//    public Set<PrivatePredictionEvaluation> getPrivatePredictionEvaluations() {
-//        return this.privatePredictionEvaluations;
-//    }
-//
-//    public void setPrivatePredictionEvaluations(Set<PrivatePredictionEvaluation> privatePredictionEvaluations) {
-//        this.privatePredictionEvaluations = privatePredictionEvaluations;
-//    }
-//
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
-//    public Set<Prediction> getPredictions() {
+//    public Set<PredictionEntity> getPredictionEntities() {
 //        return this.predictions;
 //    }
 //
-//    public void setPredictions(Set<Prediction> predictions) {
+//    public void setPredictionEntities(Set<PredictionEntity> predictions) {
 //        this.predictions = predictions;
 //    }
 //
@@ -283,14 +272,7 @@ public class ServerEntity implements java.io.Serializable {
 //        this.types = types;
 //    }
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
-//    public Set<PredictionRequest> getPredictionRequests() {
-//        return this.predictionRequests;
-//    }
-//
-//    public void setPredictionRequests(Set<PredictionRequest> predictionRequests) {
-//        this.predictionRequests = predictionRequests;
-//    }
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
 //    public Set<ServerConnectionLog> getServerConnectionLogs() {
@@ -319,14 +301,7 @@ public class ServerEntity implements java.io.Serializable {
 //        this.typePredictionEvaluations = typePredictionEvaluations;
 //    }
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
-//    public Set<PrivatePrediction> getPrivatePredictions() {
-//        return this.privatePredictions;
-//    }
-//
-//    public void setPrivatePredictions(Set<PrivatePrediction> privatePredictions) {
-//        this.privatePredictions = privatePredictions;
-//    }
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
 //    public Set<DocumentTypeTruePositive> getDocumentTypeTruePositives() {

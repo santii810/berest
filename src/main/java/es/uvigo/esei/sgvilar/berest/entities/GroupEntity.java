@@ -26,8 +26,10 @@ public class GroupEntity implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+
     @Column(name = "name", nullable = false, length = 500)
     private String name;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "\"group\""})
     private Set<UserEntity> users = new HashSet<>(0);
