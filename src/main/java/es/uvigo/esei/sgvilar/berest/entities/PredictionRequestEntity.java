@@ -28,42 +28,7 @@ public class PredictionRequestEntity implements java.io.Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "private_prediction_evaluation_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
-    private PrivatePredictionEvaluationEntity privatePredictionEvaluationEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "schedule_request_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
-    private ScheduleRequestEntity scheduleRequestEntity;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "server_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
-    private ServerEntity server;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "server_version_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
-    private ServerVersionEntity serverVersion;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
-    private TaskEntity task;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
-    private Set<PredictionResponseEntity> predictionResponsEntities = new HashSet<PredictionResponseEntity>(0);
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
-    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
-    private Set<PredictionEntity> predictionEntities = new HashSet<PredictionEntity>(0);
 
     @Column(name = "number_of_documents")
     private Integer numberOfDocuments;
@@ -130,7 +95,42 @@ public class PredictionRequestEntity implements java.io.Serializable {
     @Column(name = "lock", nullable = false)
     private boolean lock;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "private_prediction_evaluation_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
+    private PrivatePredictionEvaluationEntity privatePredictionEvaluation;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_request_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
+    private ScheduleRequestEntity scheduleRequest;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "server_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
+    private ServerEntity server;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "server_version_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
+    private ServerVersionEntity serverVersion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequests"})
+    private TaskEntity task;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
+    private Set<PredictionResponseEntity> predictionResponses = new HashSet<PredictionResponseEntity>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
+    private Set<PrivatePredictionEntity> privatePredictionss= new HashSet<PrivatePredictionEntity>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
+    private Set<PredictionEntity> predictions = new HashSet<PredictionEntity>(0);
 
 }
 

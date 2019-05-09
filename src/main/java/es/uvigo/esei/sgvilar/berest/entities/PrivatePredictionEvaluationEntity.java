@@ -27,41 +27,11 @@ public class PrivatePredictionEvaluationEntity implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
-//@ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="competition_id", nullable=false)
-//     private Competition competition;
-//@ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="gold_standard_upload_id", nullable=false)
-//     private GoldStandardUpload goldStandardUpload;
-//@ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="prediction_upload_id")
-//     private PredictionUpload predictionUpload;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "server_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
-    private ServerEntity server;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "server_version_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
-    private ServerVersionEntity serverVersion;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
-    private TaskEntity task;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
-    private UserEntity user;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", length = 19)
     private Date created;
-
     @Column(name = "macro_f_score", precision = 12, scale = 0)
     private Float macroFScore;
     @Column(name = "macro_precision", precision = 12, scale = 0)
@@ -109,6 +79,37 @@ public class PrivatePredictionEvaluationEntity implements java.io.Serializable {
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "privatePredictionEvaluation")
 //    private Set<PrivateDocumentTypeFalsePositive> privateDocumentTypeFalsePositives = new HashSet<PrivateDocumentTypeFalsePositive>(0);
+
+    //@ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name="competition_id", nullable=false)
+//     private Competition competition;
+//@ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name="gold_standard_upload_id", nullable=false)
+//     private GoldStandardUpload goldStandardUpload;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prediction_upload_id")
+    private PredictionUploadEntity predictionUpload;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "server_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
+    private ServerEntity server;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "server_version_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
+    private ServerVersionEntity serverVersion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
+    private TaskEntity task;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluations"})
+    private UserEntity user;
 
 
 }

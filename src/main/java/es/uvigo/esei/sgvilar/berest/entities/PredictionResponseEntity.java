@@ -26,10 +26,7 @@ public class PredictionResponseEntity implements java.io.Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prediction_request_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionResponses"})
-    private PredictionRequestEntity predictionRequest;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, length = 19)
@@ -44,7 +41,10 @@ public class PredictionResponseEntity implements java.io.Serializable {
     @Column(name = "number_of_predictions")
     private Integer numberOfPredictions;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prediction_request_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionResponses"})
+    private PredictionRequestEntity predictionRequest;
 }
 
 

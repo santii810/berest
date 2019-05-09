@@ -67,7 +67,7 @@ public class UserEntity implements java.io.Serializable {
     @Column(name = "subscribed_to_emails")
     private Boolean subscribedToEmails;
 
-//    private Set<PredictionUpload> predictionUploads = new HashSet<PredictionUpload>(0);
+//    private Set<PredictionUploadEntity> predictionUploads = new HashSet<PredictionUploadEntity>(0);
 //    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluationEntity>(0);
 //    private Set<ServerEntity> servers = new HashSet<ServerEntity>(0);
 //    private Set<PredictionEntity> predictions = new HashSet<PredictionEntity>(0);
@@ -87,11 +87,11 @@ public class UserEntity implements java.io.Serializable {
 
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    public Set<PredictionUpload> getPredictionUploads() {
+//    public Set<PredictionUploadEntity> getPredictionUploads() {
 //        return this.predictionUploads;
 //    }
 //
-//    public void setPredictionUploads(Set<PredictionUpload> predictionUploads) {
+//    public void setPredictionUploads(Set<PredictionUploadEntity> predictionUploads) {
 //        this.predictionUploads = predictionUploads;
 //    }
 //

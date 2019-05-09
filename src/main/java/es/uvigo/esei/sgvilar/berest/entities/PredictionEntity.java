@@ -25,6 +25,25 @@ public class PredictionEntity implements java.io.Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
+
+    @Column(name = "annotated_text", nullable = false)
+    private String annotatedText;
+    @Column(name = "init", nullable = false)
+    private int init;
+    @Column(name = "end", nullable = false)
+    private int end;
+    @Column(name = "section", nullable = false, length = 2)
+    private String section;
+    @Column(name = "score", precision = 12, scale = 0)
+    private Float score;
+    @Column(name = "database_id", length = 65535)
+    private String databaseId;
+    @Column(name = "annotated_words")
+    private Integer annotatedWords;
+
+
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "document_id", nullable = false)
     private DocumentEntity document;
@@ -45,23 +64,6 @@ public class PredictionEntity implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
-
-    @Column(name = "annotated_text", nullable = false)
-    private String annotatedText;
-    @Column(name = "init", nullable = false)
-    private int init;
-    @Column(name = "end", nullable = false)
-    private int end;
-    @Column(name = "section", nullable = false, length = 2)
-    private String section;
-    @Column(name = "score", precision = 12, scale = 0)
-    private Float score;
-    @Column(name = "database_id", length = 65535)
-    private String databaseId;
-    @Column(name = "annotated_words")
-    private Integer annotatedWords;
-
-
 }
 
 

@@ -33,6 +33,7 @@ public class ScheduleRequestEntity implements java.io.Serializable {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "schedule_algorithm_id", nullable = false)
 //    private ScheduleAlgorithm scheduleAlgorithm;
+
     @Column(name = "name", length = 2000)
     private String name;
     @Temporal(TemporalType.TIMESTAMP)
@@ -82,20 +83,20 @@ public class ScheduleRequestEntity implements java.io.Serializable {
     private String debugInfo;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "schedule_request_document", catalog = "metaserver2", joinColumns = {
+    @JoinTable(name = "schedule_request_document", catalog = "", joinColumns = {
             @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "document_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "scheduleRequests"})
     private Set<DocumentEntity> documents = new HashSet<DocumentEntity>(0);
 
     //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "schedule_request_document_provider", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "schedule_request_document_provider", catalog = "", joinColumns = {
 //            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "document_provider_id", nullable = false, updatable = false)})
 //    private Set<DocumentProvider> documentProviders = new HashSet<DocumentProvider>(0);
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "schedule_request_type", catalog = "metaserver2", joinColumns = {
+    @JoinTable(name = "schedule_request_type", catalog = "", joinColumns = {
             @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "scheduleRequests"})

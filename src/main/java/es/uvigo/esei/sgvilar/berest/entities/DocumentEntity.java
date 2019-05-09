@@ -27,25 +27,6 @@ public class DocumentEntity implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
 
 
-    @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
-    private Set<PredictionEntity> predictionEntities = new HashSet<PredictionEntity>(0);
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
-    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "schedule_request_document", catalog = "metaserver2", joinColumns = {
-            @JoinColumn(name = "document_id", nullable = false, updatable = false)}, inverseJoinColumns = {
-            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "documents"})
-    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<ScheduleRequestEntity>(0);
-
-
     @Column(name = "external_id", unique = true, nullable = false, length = 40)
     private String externalId;
     @Column(name = "title")
@@ -78,6 +59,25 @@ public class DocumentEntity implements java.io.Serializable {
     @Column(name = "agency", length = 254)
     private String agency;
 
+
+    @Column(name = "id", unique = true, nullable = false)
+    private Integer id;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
+    private Set<PredictionEntity> predictionEntities = new HashSet<PredictionEntity>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedule_request_document", catalog = "", joinColumns = {
+            @JoinColumn(name = "document_id", nullable = false, updatable = false)}, inverseJoinColumns = {
+            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "documents"})
+    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<ScheduleRequestEntity>(0);
+
 //    @ManyToOne(fetch=FetchType.LAZY)
 //    @JoinColumn(name="document_provider_id", nullable=false)
 //     private DocumentProvider documentProvider;
@@ -104,7 +104,7 @@ public class DocumentEntity implements java.io.Serializable {
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
 
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "competition_document", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "competition_document", catalog = "", joinColumns = {
 //            @JoinColumn(name = "document_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "competition_id", nullable = false, updatable = false)})
 //     private Set<Competition> competitions = new HashSet<Competition>(0);
@@ -114,7 +114,7 @@ public class DocumentEntity implements java.io.Serializable {
 //     private Set<GoldAnnotation> goldAnnotations = new HashSet<GoldAnnotation>(0);
 
 //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "project_document", catalog = "metaserver2", joinColumns = {
+//    @JoinTable(name = "project_document", catalog = "", joinColumns = {
 //            @JoinColumn(name = "document_id", nullable = false, updatable = false)}, inverseJoinColumns = {
 //            @JoinColumn(name = "project_id", nullable = false, updatable = false)})
 //     private Set<Project> projects = new HashSet<Project>(0);
