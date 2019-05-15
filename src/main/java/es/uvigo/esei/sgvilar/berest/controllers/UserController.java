@@ -4,10 +4,8 @@ import es.uvigo.esei.sgvilar.berest.entities.UserEntity;
 import es.uvigo.esei.sgvilar.berest.services.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Log4j2
@@ -20,22 +18,15 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping(
-            value = "/view/all",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public Iterable<UserEntity> findAll() {
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//
+//    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder) {
+//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//    }
+
+
+    @GetMapping("/users/")
+    public Iterable<UserEntity> getAllUsers() {
         return userService.findAll();
     }
-
-    @RequestMapping(
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public String login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
-        return "Autenticado";
-    }
-
-
 }
