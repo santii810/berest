@@ -3,7 +3,9 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import es.uvigo.esei.sgvilar.berest.Strings.BerestStrings;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,9 +27,11 @@ public class GroupEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+    @JsonView(JSONViews.UsersView.class)
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 500)
+    @JsonView(JSONViews.UsersView.class)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")

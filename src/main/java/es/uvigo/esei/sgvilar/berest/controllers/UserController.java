@@ -1,5 +1,7 @@
 package es.uvigo.esei.sgvilar.berest.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import es.uvigo.esei.sgvilar.berest.entities.UserEntity;
 import es.uvigo.esei.sgvilar.berest.services.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -22,6 +24,7 @@ public class UserController {
     private UserService userService;
 
 
+    @JsonView(JSONViews.UsersView.class)
     @RequestMapping(
             value = "/view/all",
             method = RequestMethod.GET,

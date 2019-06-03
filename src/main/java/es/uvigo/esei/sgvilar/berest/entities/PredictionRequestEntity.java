@@ -28,10 +28,10 @@ public class PredictionRequestEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    @JsonView(JSONViews.PredictionRequests.class)
+    @JsonView(JSONViews.PredictionRequestsView.class)
     private Integer id;
 
-    @JsonView(JSONViews.PredictionRequests.class)
+    @JsonView(JSONViews.PredictionRequestsView.class)
     @Column(name = "number_of_documents")
     private Integer numberOfDocuments;
     @Column(name = "number_of_documents_recived")
@@ -58,10 +58,10 @@ public class PredictionRequestEntity implements java.io.Serializable {
     private Boolean toEvaluate;
 
     @Column(name = "parameters")
-    @JsonView(JSONViews.PredictionRequests.class)
+    @JsonView(JSONViews.PredictionRequestsView.class)
     private String parameters;
 
-    @JsonView(JSONViews.PredictionRequests.class)
+    @JsonView(JSONViews.PredictionRequestsView.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", length = 19)
     private Date created;

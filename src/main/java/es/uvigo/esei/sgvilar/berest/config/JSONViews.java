@@ -4,11 +4,14 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class JSONViews {
-    public interface ServerAndServices {
+    public interface ServerAndServicesView {
     }
 
-    public interface PredictionRequests {
+    public interface PredictionRequestsView {
     }
 
-//    public interface Complete extends ServerAndServices {]
+    public interface UsersView {
+    }
+
+//    public interface Complete extends ServerAndServicesView {]
 }

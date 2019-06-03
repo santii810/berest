@@ -22,7 +22,7 @@ public class ServerController {
     @Autowired
     private ServerService serverService;
 
-    @JsonView(JSONViews.ServerAndServices.class)
+    @JsonView(JSONViews.ServerAndServicesView.class)
     @RequestMapping(
             value = "/view/all",
             method = RequestMethod.GET,
@@ -32,7 +32,7 @@ public class ServerController {
         return serverService.findAll();
     }
 
-    @JsonView(JSONViews.ServerAndServices.class)
+    @JsonView(JSONViews.ServerAndServicesView.class)
     @RequestMapping(
             value = "/view/online",
             method = RequestMethod.GET,
