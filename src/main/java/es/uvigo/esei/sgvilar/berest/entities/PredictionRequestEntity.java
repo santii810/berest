@@ -3,6 +3,8 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +28,10 @@ public class PredictionRequestEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+    @JsonView(JSONViews.PredictionRequests.class)
     private Integer id;
 
-
+    @JsonView(JSONViews.PredictionRequests.class)
     @Column(name = "number_of_documents")
     private Integer numberOfDocuments;
     @Column(name = "number_of_documents_recived")
@@ -53,8 +56,12 @@ public class PredictionRequestEntity implements java.io.Serializable {
     private Boolean endsWithError;
     @Column(name = "to_evaluate")
     private Boolean toEvaluate;
+
     @Column(name = "parameters")
+    @JsonView(JSONViews.PredictionRequests.class)
     private String parameters;
+
+    @JsonView(JSONViews.PredictionRequests.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", length = 19)
     private Date created;
@@ -91,8 +98,7 @@ public class PredictionRequestEntity implements java.io.Serializable {
     private String hash;
     @Column(name = "documents_bytes")
     private Integer documentsBytes;
-    @Column(name = "lock", nullable = false)
-    private boolean lock;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "private_prediction_evaluation_id")

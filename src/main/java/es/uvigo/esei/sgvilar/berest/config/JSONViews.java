@@ -7,5 +7,8 @@ public class JSONViews {
     public interface ServerAndServices {
     }
 
+    public interface PredictionRequests {
+    }
+
 //    public interface Complete extends ServerAndServices {]
 }
