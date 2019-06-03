@@ -89,11 +89,12 @@ public class ScheduleRequestEntity implements java.io.Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "scheduleRequests"})
     private Set<DocumentEntity> documents = new HashSet<>(0);
 
-    //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "schedule_request_document_provider", catalog = "", joinColumns = {
-//            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
-//            @JoinColumn(name = "document_provider_id", nullable = false, updatable = false)})
-//    private Set<DocumentProvider> documentProviders = new HashSet<DocumentProvider>(0);
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedule_request_document_provider", catalog = "", joinColumns = {
+            @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
+            @JoinColumn(name = "document_provider_id", nullable = false, updatable = false)})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "scheduleRequests"})
+    private Set<DocumentProviderEntity> documentProviders = new HashSet<DocumentProviderEntity>(0);
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "schedule_request_type", catalog = "", joinColumns = {

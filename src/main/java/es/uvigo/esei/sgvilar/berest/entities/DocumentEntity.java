@@ -25,7 +25,8 @@ public class DocumentEntity implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
+    @Column(name = "id", unique = true, nullable = false)
+    private Integer id;
 
     @Column(name = "external_id", unique = true, nullable = false, length = 40)
     private String externalId;
@@ -60,9 +61,6 @@ public class DocumentEntity implements java.io.Serializable {
     private String agency;
 
 
-    @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
     private Set<PredictionEntity> predictionEntities = new HashSet<>(0);
@@ -78,9 +76,10 @@ public class DocumentEntity implements java.io.Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "documents"})
     private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<>(0);
 
-//    @ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="document_provider_id", nullable=false)
-//     private DocumentProvider documentProvider;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "document_provider_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "documents"})
+    private DocumentProviderEntity documentProvider;
 
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
