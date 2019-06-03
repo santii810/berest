@@ -57,14 +57,14 @@ public class TypeEntity implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "type"})
-    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<>(0);
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "schedule_request_type", catalog = BerestStrings.CATALOG_NAME, joinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "types"})
-    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<ScheduleRequestEntity>(0);
+    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<>(0);
 
 //    private Set<PrivateTypePredictionEvaluation> privateTypePredictionEvaluations = new HashSet<PrivateTypePredictionEvaluation>(0);
 //    private Set<GoldAnnotation> goldAnnotations = new HashSet<GoldAnnotation>(0);

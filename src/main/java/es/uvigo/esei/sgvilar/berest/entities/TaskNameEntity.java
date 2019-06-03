@@ -32,7 +32,7 @@ public class TaskNameEntity implements java.io.Serializable {
     private String description;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "taskName")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "taskName"})
-    private Set<TaskEntity> tasks = new HashSet<TaskEntity>(0);
+    private Set<TaskEntity> tasks = new HashSet<>(0);
 
 }
 

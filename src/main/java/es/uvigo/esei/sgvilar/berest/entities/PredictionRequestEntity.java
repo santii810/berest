@@ -121,15 +121,15 @@ public class PredictionRequestEntity implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
-    private Set<PredictionResponseEntity> predictionResponses = new HashSet<PredictionResponseEntity>(0);
+    private Set<PredictionResponseEntity> predictionResponses = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
-    private Set<PrivatePredictionEntity> privatePredictionss = new HashSet<PrivatePredictionEntity>(0);
+    private Set<PrivatePredictionEntity> privatePredictionss = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "predictionRequest")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictionRequest"})
-    private Set<PredictionEntity> predictions = new HashSet<PredictionEntity>(0);
+    private Set<PredictionEntity> predictions = new HashSet<>(0);
 
 }
 

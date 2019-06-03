@@ -65,18 +65,18 @@ public class DocumentEntity implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
-    private Set<PredictionEntity> predictionEntities = new HashSet<PredictionEntity>(0);
+    private Set<PredictionEntity> predictionEntities = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "document"})
-    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<>(0);
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "schedule_request_document", catalog = "", joinColumns = {
             @JoinColumn(name = "document_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "documents"})
-    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<ScheduleRequestEntity>(0);
+    private Set<ScheduleRequestEntity> scheduleRequestEntities = new HashSet<>(0);
 
 //    @ManyToOne(fetch=FetchType.LAZY)
 //    @JoinColumn(name="document_provider_id", nullable=false)

@@ -31,15 +31,15 @@ public class UserEntity implements java.io.Serializable {
     private GroupEntity group;
 
     @Column(name = "name", nullable = false, length = 500)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "user"})
-    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
-
     private String name;
+
+
     @Column(name = "organization", nullable = false, length = 2000)
     private String organization;
+
     @Column(name = "email", nullable = false, length = 500)
     private String email;
+
     @Column(name = "password", length = 50)
     private String password;
 
@@ -66,6 +66,10 @@ public class UserEntity implements java.io.Serializable {
     private String provider;
     @Column(name = "subscribed_to_emails")
     private Boolean subscribedToEmails;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "user"})
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<>(0);
 
 //    private Set<PredictionUploadEntity> predictionUploads = new HashSet<PredictionUploadEntity>(0);
 //    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluations = new HashSet<PrivatePredictionEvaluationEntity>(0);

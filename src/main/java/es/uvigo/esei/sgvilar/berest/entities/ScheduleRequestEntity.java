@@ -87,7 +87,7 @@ public class ScheduleRequestEntity implements java.io.Serializable {
             @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "document_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "scheduleRequests"})
-    private Set<DocumentEntity> documents = new HashSet<DocumentEntity>(0);
+    private Set<DocumentEntity> documents = new HashSet<>(0);
 
     //    @ManyToMany(fetch = FetchType.LAZY)
 //    @JoinTable(name = "schedule_request_document_provider", catalog = "", joinColumns = {
@@ -100,7 +100,7 @@ public class ScheduleRequestEntity implements java.io.Serializable {
             @JoinColumn(name = "schedule_request_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "scheduleRequests"})
-    private Set<TypeEntity> types = new HashSet<TypeEntity>(0);
+    private Set<TypeEntity> types = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "scheduleRequest")
     private Set<PredictionRequestEntity> predictionRequests = new HashSet<>(0);

@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     Iterable<UserEntity> findAll();
+
+    UserEntity save(UserEntity user);
 }

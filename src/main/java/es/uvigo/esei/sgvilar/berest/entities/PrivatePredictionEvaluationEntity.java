@@ -69,7 +69,7 @@ public class PrivatePredictionEvaluationEntity implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "privatePredictionEvaluation")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "privatePredictionEvaluation"})
-    private Set<PredictionRequestEntity> predictionRequests = new HashSet<PredictionRequestEntity>(0);
+    private Set<PredictionRequestEntity> predictionRequests = new HashSet<>(0);
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "privatePredictionEvaluation")
 //    private Set<PrivateDocumentTypeFalseNegative> privateDocumentTypeFalseNegatives = new HashSet<PrivateDocumentTypeFalseNegative>(0);

@@ -146,12 +146,12 @@ public class ServerEntity implements java.io.Serializable {
             @JoinColumn(name = "type_id", nullable = false, updatable = false)})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
     @JsonView(JSONViews.ServerAndServices.class)
-    private Set<TypeEntity> types = new HashSet<TypeEntity>(0);
+    private Set<TypeEntity> types = new HashSet<>(0);
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
-    private Set<ServerStateEntity> serverStates = new HashSet<ServerStateEntity>(0);
+    private Set<ServerStateEntity> serverStates = new HashSet<>(0);
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
@@ -160,15 +160,15 @@ public class ServerEntity implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
-    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<PrivatePredictionEntity>(0);
+    private Set<PrivatePredictionEntity> privatePredictionEntities = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
-    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluationEntities = new HashSet<PrivatePredictionEvaluationEntity>(0);
+    private Set<PrivatePredictionEvaluationEntity> privatePredictionEvaluationEntities = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "server")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "server"})
-    private Set<ServerVersionEntity> serverVersions = new HashSet<ServerVersionEntity>(0);
+    private Set<ServerVersionEntity> serverVersions = new HashSet<>(0);
 
 //    private Set<ProjectsServersTypesDocuments> projectsServersTypesDocumentses = new HashSet<ProjectsServersTypesDocuments>(0);
 //    private Set<CompetitionParticipant> competitionParticipants = new HashSet<CompetitionParticipant>(0);
