@@ -1,9 +1,10 @@
 package es.uvigo.esei.sgvilar.berest.services;
 
+
 import es.uvigo.esei.sgvilar.berest.entities.PredictionRequestEntity;
 import es.uvigo.esei.sgvilar.berest.repositories.PredictionRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,7 @@ public class PredictionRequestService {
     @Autowired
     private PredictionRequestRepository predictionRequestRepository;
 
-    public Iterable<PredictionRequestEntity> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+    public Page<PredictionRequestEntity> findAll(Pageable pageable) {
         return predictionRequestRepository.findAll(pageable);
     }
 

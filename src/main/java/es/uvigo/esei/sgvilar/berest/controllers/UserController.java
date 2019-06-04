@@ -39,11 +39,11 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<String> addUser(
+    public ResponseEntity<UserEntity> addUser(
             @RequestBody UserEntity user
     ) {
         UserEntity savedUser = userService.save(user);
-        return new ResponseEntity<>("User created " + savedUser.getId(), HttpStatus.CREATED);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
 
