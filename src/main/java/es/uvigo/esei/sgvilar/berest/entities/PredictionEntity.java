@@ -3,6 +3,8 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,14 +25,18 @@ public class PredictionEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private Integer id;
 
 
     @Column(name = "annotated_text", nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private String annotatedText;
     @Column(name = "init", nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private int init;
     @Column(name = "end", nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private int end;
     @Column(name = "section", nullable = false, length = 2)
     private String section;
@@ -44,6 +50,7 @@ public class PredictionEntity implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "document_id", nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private DocumentEntity document;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prediction_request_id")
@@ -52,15 +59,18 @@ public class PredictionEntity implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "server_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "predictions"})
+    @JsonView(JSONViews.PredictionView.class)
     private ServerEntity server;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "server_version_id", nullable = false)
     private ServerVersionEntity serverVersion;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private TypeEntity type;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private UserEntity user;
 }
 
