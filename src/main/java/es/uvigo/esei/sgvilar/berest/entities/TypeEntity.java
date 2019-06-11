@@ -28,17 +28,17 @@ public class TypeEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    @JsonView(JSONViews.ServerAndServicesView.class)
+    @JsonView(JSONViews.TypeView.class)
     private Integer id;
 
 
     @Column(name = "name", unique = true, nullable = false)
-    @JsonView(JSONViews.ServerAndServicesView.class)
+    @JsonView(JSONViews.TypeView.class)
     private String name;
 
 
     @Column(name = "description", length = 65535)
-    @JsonView(JSONViews.ServerAndServicesView.class)
+    @JsonView(JSONViews.TypeView.class)
     private String description;
     @Column(name = "color", unique = true, length = 15)
     private String color;

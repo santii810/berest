@@ -29,17 +29,17 @@ public class ServerEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    @JsonView(JSONViews.ServerAndServicesView.class)
+    @JsonView(JSONViews.ServerView.class)
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "servers"})
     private UserEntity user;
     @Column(name = "name", nullable = false, length = 2000)
-    @JsonView(JSONViews.ServerAndServicesView.class)
+    @JsonView(JSONViews.ServerView.class)
     private String name;
     @Column(name = "description", nullable = false, length = 65535)
-    @JsonView(JSONViews.ServerAndServicesView.class)
+    @JsonView(JSONViews.ServerView.class)
     private String description;
     @Column(name = "person_of_contact", length = 500)
     private String personOfContact;
