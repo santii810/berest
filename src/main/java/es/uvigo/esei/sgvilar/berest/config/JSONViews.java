@@ -10,10 +10,13 @@ public class JSONViews {
     public interface PredictionRequestsView {
     }
 
+    public interface UsersFullView extends UsersView {
+    }
+
     public interface UsersView {
     }
 
-    public interface PredictionView extends ServerView {
+    public interface PredictionView extends ServerView, TypeView, UsersView {
     }
 
     public interface ServerView {

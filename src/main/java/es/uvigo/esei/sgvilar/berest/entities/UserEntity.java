@@ -31,7 +31,7 @@ public class UserEntity implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "users"})
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private GroupEntity group;
 
     @Column(name = "name", nullable = false, length = 500)
@@ -40,7 +40,7 @@ public class UserEntity implements java.io.Serializable {
 
 
     @Column(name = "organization", nullable = false, length = 2000)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private String organization;
 
     @Column(name = "email", nullable = false, length = 500)
@@ -51,13 +51,13 @@ public class UserEntity implements java.io.Serializable {
     private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     @Column(name = "created", length = 19)
 
     private Date created;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modified", length = 19)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private Date modified;
 
 
@@ -70,13 +70,13 @@ public class UserEntity implements java.io.Serializable {
 
 
     @Column(name = "uid", length = 200)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private String uid;
     @Column(name = "provider", length = 200)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private String provider;
     @Column(name = "subscribed_to_emails")
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private Boolean subscribedToEmails;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

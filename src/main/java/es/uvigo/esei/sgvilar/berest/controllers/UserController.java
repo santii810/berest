@@ -24,7 +24,7 @@ public class UserController {
     private UserService userService;
 
 
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     @RequestMapping(
             value = "/view/all",
             method = RequestMethod.GET,
@@ -34,6 +34,7 @@ public class UserController {
         return userService.findAll();
     }
 
+    @JsonView(JSONViews.UsersFullView.class)
     @RequestMapping(
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE,

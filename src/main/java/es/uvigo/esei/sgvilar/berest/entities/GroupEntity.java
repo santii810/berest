@@ -27,11 +27,11 @@ public class GroupEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 500)
-    @JsonView(JSONViews.UsersView.class)
+    @JsonView(JSONViews.UsersFullView.class)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
