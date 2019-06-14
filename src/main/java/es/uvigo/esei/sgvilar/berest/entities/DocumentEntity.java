@@ -3,6 +3,8 @@ package es.uvigo.esei.sgvilar.berest.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import es.uvigo.esei.sgvilar.berest.config.JSONViews;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,11 +28,14 @@ public class DocumentEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
+    @JsonView(JSONViews.PredictionView.class)
     private Integer id;
 
     @Column(name = "external_id", unique = true, nullable = false, length = 40)
+    @JsonView(JSONViews.PredictionView.class)
     private String externalId;
     @Column(name = "title")
+    @JsonView(JSONViews.PredictionView.class)
     private byte[] title;
     @Column(name = "abstract")
     private byte[] abstract_;

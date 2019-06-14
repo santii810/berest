@@ -31,29 +31,40 @@ public class PredictionRequestEntity implements java.io.Serializable {
     @JsonView(JSONViews.PredictionRequestsView.class)
     private Integer id;
 
-    @JsonView(JSONViews.PredictionRequestsView.class)
     @Column(name = "number_of_documents")
+    @JsonView(JSONViews.PredictionRequestsView.class)
     private Integer numberOfDocuments;
+
     @Column(name = "number_of_documents_recived")
     private Integer numberOfDocumentsRecived;
+
     @Column(name = "number_of_predictions")
     private Integer numberOfPredictions;
+
     @Column(name = "number_of_responses")
     private Integer numberOfResponses;
+
     @Column(name = "number_of_types")
     private Integer numberOfTypes;
+
     @Column(name = "unreachable_count")
     private Integer unreachableCount;
+
     @Column(name = "is_expired")
     private Boolean isExpired;
+
     @Column(name = "is_end")
     private Boolean isEnd;
+
     @Column(name = "is_sended")
     private Boolean isSended;
+
     @Column(name = "is_private")
     private Boolean isPrivate;
+
     @Column(name = "ends_with_error")
     private Boolean endsWithError;
+
     @Column(name = "to_evaluate")
     private Boolean toEvaluate;
 
@@ -61,7 +72,6 @@ public class PredictionRequestEntity implements java.io.Serializable {
     @JsonView(JSONViews.PredictionRequestsView.class)
     private String parameters;
 
-    @JsonView(JSONViews.PredictionRequestsView.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", length = 19)
     private Date created;
