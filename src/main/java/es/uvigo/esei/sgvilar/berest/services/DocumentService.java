@@ -1,5 +1,6 @@
 package es.uvigo.esei.sgvilar.berest.services;
 
+
 import es.uvigo.esei.sgvilar.berest.entities.DocumentEntity;
 import es.uvigo.esei.sgvilar.berest.entities.DocumentProviderEntity;
 import es.uvigo.esei.sgvilar.berest.repositories.DocumentProviderRepository;
@@ -22,22 +23,20 @@ public class DocumentService {
         return documentRepository.save(document);
     }
 
-    public Iterable<DocumentEntity> saveNotExistents(List<DocumentEntity> documents) {
-        List<DocumentEntity> savedDocuments = new ArrayList<>();
+    public List<DocumentEntity> matchDocuments(List<DocumentEntity> documents) {
+        List<DocumentEntity> toret = new ArrayList<>();
         for (DocumentEntity doc : documents) {
             if (!documentRepository.existsByExternalId(doc.getExternalId())) {
-
                 if (doc.getDocumentProvider().getId() == null) {
                     String providerName = doc.getDocumentProvider().getName();
                     DocumentProviderEntity documentProvider = documentProviderRepository.getByName(providerName);
                     doc.setDocumentProvider(documentProvider);
-                    System.out.println(documentProvider.getId());
-                } else {
-                    savedDocuments.add(documentRepository.save(doc));
                 }
+                toret.add(documentRepository.save(doc));
+            } else {
+                toret.add(documentRepository.findByExternalId(doc.getExternalId()));
             }
         }
-        return savedDocuments;
+        return toret;
     }
-
 }

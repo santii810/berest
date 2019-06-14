@@ -28,14 +28,14 @@ public class DocumentEntity implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    @JsonView(JSONViews.PredictionView.class)
+    @JsonView(JSONViews.DocumentView.class)
     private Integer id;
 
     @Column(name = "external_id", unique = true, nullable = false, length = 40)
-    @JsonView(JSONViews.PredictionView.class)
+    @JsonView(JSONViews.DocumentView.class)
     private String externalId;
     @Column(name = "title")
-    @JsonView(JSONViews.PredictionView.class)
+    @JsonView(JSONViews.DocumentView.class)
     private byte[] title;
     @Column(name = "abstract")
     private byte[] abstract_;

@@ -8,4 +8,6 @@ public interface DocumentRepository extends CrudRepository<DocumentEntity, Integ
     DocumentEntity save(DocumentEntity document);
 
     boolean existsByExternalId(String externalId);
+
+    DocumentEntity findByExternalId(String externalId);
 }

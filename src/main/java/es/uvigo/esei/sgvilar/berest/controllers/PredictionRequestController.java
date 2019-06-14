@@ -35,7 +35,7 @@ public class PredictionRequestController {
     private DocumentService documentService;
 
     @RequestMapping(
-            value = "/view/all",
+            value = "/requests",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -53,15 +53,14 @@ public class PredictionRequestController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<List<DocumentEntity>> save(
+    @JsonView(JSONViews.PredictionRequestsWrapperView.class)
+    public ResponseEntity<PredictionRequestWrapper> save(
             @RequestBody PredictionRequestWrapper wrapper
     ) {
-        System.out.println(wrapper);
-        documentService.saveNotExistents(wrapper.getDocuments());
+        List<DocumentEntity> documentsMatched = documentService.matchDocuments(wrapper.getDocuments());
+        wrapper.setDocuments(documentsMatched);
 
-
-        //TODO cambiar respuesta
-        return new ResponseEntity<List<DocumentEntity>>(wrapper.getDocuments(), HttpStatus.OK);
+        return new ResponseEntity<PredictionRequestWrapper>(wrapper, HttpStatus.OK);
     }
 
 
