@@ -1,4 +1,4 @@
-package es.uvigo.esei.sgvilar.berest.controllers.wrappers;
+package es.uvigo.esei.sgvilar.berest.utils;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import es.uvigo.esei.sgvilar.berest.config.JSONViews;

@@ -3,7 +3,7 @@ package es.uvigo.esei.sgvilar.berest.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import es.uvigo.esei.sgvilar.berest.config.JSONViews;
-import es.uvigo.esei.sgvilar.berest.controllers.wrappers.PredictionRequestWrapper;
+import es.uvigo.esei.sgvilar.berest.utils.PredictionRequestWrapper;
 import es.uvigo.esei.sgvilar.berest.entities.DocumentEntity;
 import es.uvigo.esei.sgvilar.berest.entities.PredictionRequestEntity;
 import es.uvigo.esei.sgvilar.berest.services.DocumentService;
