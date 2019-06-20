@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DocumentRepository extends CrudRepository<DocumentEntity, Integer> {
 
-    DocumentEntity save(DocumentEntity document);
+//    DocumentEntity save(DocumentEntity document);
 
     boolean existsByExternalId(String externalId);
 
