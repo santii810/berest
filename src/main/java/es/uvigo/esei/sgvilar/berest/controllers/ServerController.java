@@ -24,7 +24,6 @@ public class ServerController {
 
     @JsonView(JSONViews.ServerAndServicesView.class)
     @RequestMapping(
-            value = "/view/all",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -34,7 +33,7 @@ public class ServerController {
 
     @JsonView(JSONViews.ServerAndServicesView.class)
     @RequestMapping(
-            value = "/view/online",
+            value = "/online",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
