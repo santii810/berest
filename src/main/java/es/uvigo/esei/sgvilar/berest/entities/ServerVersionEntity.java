@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @Table(name = "server_version", catalog = "")
-public class ServerVersionEntity implements java.io.Serializable {
+public class ServerVersionEntity implements java.io.Serializable, Comparable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -37,6 +37,12 @@ public class ServerVersionEntity implements java.io.Serializable {
     private Date created;
     @Column(name = "description", length = 65535)
     private String description;
+
+    @Override
+    public int compareTo(Object o) {
+
+        return this.getId().compareTo(((ServerVersionEntity) o).getId());
+    }
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "serverVersion")
 //    private Set<PredictionEvaluation> predictionEvaluations = new HashSet<PredictionEvaluation>(0);
